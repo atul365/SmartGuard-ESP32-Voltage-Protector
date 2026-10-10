@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>SmartGuard Dashboard</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+ 
+<header>
+  <h1>SmartGuard ESP32</h1>
+  <p>Voltage and Overcurrent Monitoring</p>
+</header>
+
+<section class="settings-panel">
+
+  <h2>Protection Settings</h2>
+
+  <div class="settings-grid">
+
+    <label>
+      Minimum Voltage (V)
+      <input type="number"
+             id="minVoltageInput"
+             min="0" max="300"
+             value="200">
+    </label>
+
+    <label>
+      Maximum Voltage (V)
+      <input type="number"
+             id="maxVoltageInput"
+             min="0" max="300"
+             value="250">
+    </label>
+
+    <label>
+      Maximum Current (A)
+      <input type="number"
+             id="maxCurrentInput"
+             min="0.1" max="10"
+             step="0.1" value="5">
+    </label>
+
+  </div>
+
+  <button id="saveSettings">
+    Save Settings
+  </button>
+
+  <button id="resetButton">
+    Reset Fault
+  </button>
+
+  <p id="commandStatus">
+    Remote controls unavailable until
+    authenticated MQTT is configured.
+  </p>
+
+</section>
+
+
+<main>
+  <h2>Live Monitoring</h2>
+  <p id="mqtt-status">MQTT: Connecting...</p>
+
+  <section class="dashboard">
+
+    <div class="card">
+      <h3>Voltage</h3>
+      <p id="voltage">-- V</p>
+    </div>
+
+    <div class="card">
+      <h3>Current</h3>
+      <p id="current">-- A</p>
+    </div>
+
+    <div class="card">
+      <h3>Load Status</h3>
+      <p id="load">OFFLINE</p>
+    </div>
+
+    
+<div class="card">
+  <h3>Protection Status</h3>
+
+  <div class="status-row">
+    <span>Current Condition:</span>
+    <strong id="condition">--</strong>
+  </div>
+
+  <div class="status-row">
+    <span>Latched Fault:</span>
+    <strong id="fault">--</strong>
+  </div>
+</div>
+
+
+  </section>
+</main>
+<script src="https://unpkg.com/mqtt@5/dist/mqtt.min.js"></script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
